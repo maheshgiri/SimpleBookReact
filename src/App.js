@@ -27,8 +27,8 @@ class BooksApp extends React.Component {
   updateShelf = (shelfvalue, book) => {
     const { allBookList } = this.state
     var priviousShelf = book.shelf
-    console.log('Privious Shelf ' + book.shelf)
-    console.log('Next Shelf ' + book.shelf)
+    //   console.log('Privious Shelf ' + book.shelf)
+    //   console.log('Next Shelf ' + book.shelf)
 
     BooksAPI.update(book, shelfvalue).then((res) => {
       let allBookReadTempList = allBookList
@@ -47,7 +47,7 @@ class BooksApp extends React.Component {
         newUpdated = { ...allBookList, ...book }
       }
 
-      console.log('Updating Book ' + JSON.stringify(allBookReadTempList))
+      //   console.log('Updating Book ' + JSON.stringify(allBookReadTempList))
 
       this.setState({ newUpdated })
       BooksAPI.getAll().then((data) => {

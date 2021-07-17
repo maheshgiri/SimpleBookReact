@@ -13,16 +13,16 @@ class BookList extends React.Component {
   }
 
   getDerivedStateFromProps(props, state) {
-    console.log('State Received ' + props.allBookList)
+    // console.log('State Received ' + props.allBookList)
   }
 
   componentDidUpdate() {
-    console.log('Update State Received ' + this.props.allBookList)
+    //    console.log('Update State Received ' + this.props.allBookList)
   }
 
   componentDidMount() {
     const { updateShelf, allBookLists } = this.props
-    console.log('State Received ' + JSON.stringify(allBookLists))
+    //  console.log('State Received ' + JSON.stringify(allBookLists))
   }
 
   render() {
