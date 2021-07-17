@@ -4,6 +4,7 @@ import './App.css'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import _, { forEach } from 'lodash'
+import Book from './Book'
 
 class SearchBook extends React.Component {
   state = {
@@ -33,16 +34,16 @@ class SearchBook extends React.Component {
     }
   }, 1000)
 
-  onChangeShelf = (e, book) => {
+  onChangeShelf = (value, book) => {
     const { searchedBookResult } = this.state
     const { updateShelf } = this.props
     let allBookReadTempList = searchedBookResult
     allBookReadTempList.map((item) =>
-      item.id === book.id ? (item.shelf = e.target.value) : '',
+      item.id === book.id ? (item.shelf = value) : '',
     )
     this.setState({ searchedBookResult: allBookReadTempList })
 
-    updateShelf(e.target.value, book)
+    updateShelf(value, book)
   }
 
   render() {
@@ -57,14 +58,6 @@ class SearchBook extends React.Component {
             Close
           </Link>
           <div className="search-books-input-wrapper">
-            {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
             <input
               type="text"
               value={this.state.searchedText}
@@ -87,42 +80,7 @@ class SearchBook extends React.Component {
                 }
                 return (
                   <li key={book.id}>
-                    <div className="book">
-                      <div className="book-top">
-                        <div
-                          className="book-cover"
-                          style={{
-                            width: 128,
-                            height: 193,
-                            backgroundImage: `url(${
-                              book.imageLinks && book.imageLinks.thumbnail
-                            })`,
-                          }}
-                        ></div>
-                        <div className="book-shelf-changer">
-                          <select
-                            value={book.shelf}
-                            onChange={(e) => {
-                              this.onChangeShelf(e, book)
-                            }}
-                          >
-                            <option value="move" disabled>
-                              Move to...
-                            </option>
-                            <option value="currentlyReading">
-                              Currently Reading
-                            </option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="read">Read</option>
-                            <option value="none">None</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="book-title">{book.title}</div>
-                      <div className="book-authors">
-                        {book.authors && book.authors.join(',')}
-                      </div>
-                    </div>
+                    <Book book={book} onChangeShelf={this.onChangeShelf} />
                   </li>
                 )
               })}

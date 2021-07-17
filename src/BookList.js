@@ -1,7 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './App.css'
+import Book from './Book'
 
+const SHELVES = [
+  {
+    title: 'Currently Reading',
+    id: 'currentlyReading',
+  },
+  {
+    title: 'Want To Read',
+    id: 'wantToRead',
+  },
+  {
+    title: 'Read',
+    id: 'read',
+  },
+]
 class BookList extends React.Component {
   constructor(props) {
     super(props)
@@ -12,17 +27,12 @@ class BookList extends React.Component {
     }
   }
 
-  getDerivedStateFromProps(props, state) {
-    // console.log('State Received ' + props.allBookList)
-  }
+  getDerivedStateFromProps(props, state) {}
 
-  componentDidUpdate() {
-    //    console.log('Update State Received ' + this.props.allBookList)
-  }
+  componentDidUpdate() {}
 
   componentDidMount() {
     const { updateShelf, allBookLists } = this.props
-    //  console.log('State Received ' + JSON.stringify(allBookLists))
   }
 
   render() {
@@ -41,8 +51,8 @@ class BookList extends React.Component {
       readedBookList = allBookLists.filter((book) => book.shelf === 'read')
     }
 
-    const onChangeShelf = (e, book) => {
-      updateShelf(e.target.value, book)
+    const onChangeShelf = (value, book) => {
+      updateShelf(value, book)
     }
 
     return (
@@ -58,40 +68,7 @@ class BookList extends React.Component {
                 <ol className="books-grid">
                   {currentlyReadingBookList.map((book) => (
                     <li key={book.id}>
-                      <div className="book">
-                        <div className="book-top">
-                          <div
-                            className="book-cover"
-                            style={{
-                              width: 128,
-                              height: 193,
-                              backgroundImage: `url(${book.imageLinks.thumbnail})`,
-                            }}
-                          ></div>
-                          <div className="book-shelf-changer">
-                            <select
-                              value={book.shelf}
-                              onChange={(e) => {
-                                onChangeShelf(e, book)
-                              }}
-                            >
-                              <option value="move" disabled>
-                                Move to...
-                              </option>
-                              <option value="currentlyReading">
-                                Currently Reading
-                              </option>
-                              <option value="wantToRead">Want to Read</option>
-                              <option value="read">Read</option>
-                              <option value="none">None</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div className="book-title">{book.title}</div>
-                        <div className="book-authors">
-                          {book.authors && book.authors.join(',')}
-                        </div>
-                      </div>
+                      <Book book={book} onChangeShelf={onChangeShelf} />
                     </li>
                   ))}
                 </ol>
@@ -103,40 +80,7 @@ class BookList extends React.Component {
                 <ol className="books-grid">
                   {wantToReadBookList.map((book) => (
                     <li key={book.id}>
-                      <div className="book">
-                        <div className="book-top">
-                          <div
-                            className="book-cover"
-                            style={{
-                              width: 128,
-                              height: 193,
-                              backgroundImage: `url(${book.imageLinks.thumbnail})`,
-                            }}
-                          ></div>
-                          <div className="book-shelf-changer">
-                            <select
-                              value={book.shelf}
-                              onChange={(e) => {
-                                onChangeShelf(e, book)
-                              }}
-                            >
-                              <option value="move" disabled>
-                                Move to...
-                              </option>
-                              <option value="currentlyReading">
-                                Currently Reading
-                              </option>
-                              <option value="wantToRead">Want to Read</option>
-                              <option value="read">Read</option>
-                              <option value="none">None</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div className="book-title">{book.title}</div>
-                        <div className="book-authors">
-                          {book.authors && book.authors.join(',')}
-                        </div>
-                      </div>
+                      <Book book={book} onChangeShelf={onChangeShelf} />
                     </li>
                   ))}
                 </ol>
@@ -148,40 +92,7 @@ class BookList extends React.Component {
                 <ol className="books-grid">
                   {readedBookList.map((book) => (
                     <li key={book.id}>
-                      <div className="book">
-                        <div className="book-top">
-                          <div
-                            className="book-cover"
-                            style={{
-                              width: 128,
-                              height: 193,
-                              backgroundImage: `url(${book.imageLinks.thumbnail})`,
-                            }}
-                          ></div>
-                          <div className="book-shelf-changer">
-                            <select
-                              value={book.shelf}
-                              onChange={(e) => {
-                                onChangeShelf(e, book)
-                              }}
-                            >
-                              <option value="move" disabled>
-                                Move to...
-                              </option>
-                              <option value="currentlyReading">
-                                Currently Reading
-                              </option>
-                              <option value="wantToRead">Want to Read</option>
-                              <option value="read">Read</option>
-                              <option value="none">None</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div className="book-title">{book.title}</div>
-                        <div className="book-authors">
-                          {book.authors && book.authors.join(',')}
-                        </div>
-                      </div>
+                      <Book book={book} onChangeShelf={this.onChangeShelf} />
                     </li>
                   ))}
                 </ol>
