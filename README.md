@@ -1,4 +1,4 @@
-# MyReads Project
+# SimpleBookReact Project
 
 ## TL;DR
 
@@ -92,8 +92,5 @@ improved functionality of SearchBook
 added updating shelf from it
 added new no match component
 improved functionality of SearchBook and tested with updateing shelf on booklist
-
-# SimpleBookReact
-
 logs removed for clean code
 debounce implemented for searchbooks
