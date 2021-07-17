@@ -21,6 +21,7 @@ To get started developing right away:
     ├── App.js # This is the root of your app. Contains static HTML right now.
     |-- BookList.js #This is used for showing list of books by shelfs and updating shelf.
     |-- SearchBook.js #This is used for searching by name/author and updating book shelf.
+    |-- Book.js #Component for Book details
     |-- NoMatch.js  #This is used for incorrect route match.
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
     ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
